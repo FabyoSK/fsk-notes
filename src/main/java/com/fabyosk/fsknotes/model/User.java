@@ -1,15 +1,24 @@
 package com.fabyosk.fsknotes.model;
 
+import javax.persistence.*;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
  * The User entity
  */
+@Entity
 public class User {
-    private int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String name;
-    private Map<Integer, Note> noteMap;
+
+    @OneToMany( targetEntity=Note.class )
+    private List<Note> notes;
 
     /**
      * Create a new instante of noteMap and set the name
@@ -18,7 +27,7 @@ public class User {
      */
     public User(String name) {
         this.name = name;
-        noteMap = new HashMap();
+        notes = new LinkedList<>();
     }
 
 
@@ -28,7 +37,7 @@ public class User {
      * @param note
      */
     public void addNote(Note note) {
-        noteMap.put(0, note);
+        notes.add(note);
     }
 
     /**
@@ -37,7 +46,7 @@ public class User {
      * @param id
      */
     public void removeNote(int id) {
-        noteMap.remove(id);
+        notes.remove(id);
     }
 
 
@@ -46,7 +55,7 @@ public class User {
      *
      * @return id
      */
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -66,7 +75,7 @@ public class User {
      *
      * @param id
      */
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }
