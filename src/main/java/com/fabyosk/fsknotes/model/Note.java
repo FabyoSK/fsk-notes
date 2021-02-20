@@ -1,4 +1,4 @@
-package com.fabyosk.model;
+package com.fabyosk.fsknotes.model;
 
 public class Note {
     private String content;

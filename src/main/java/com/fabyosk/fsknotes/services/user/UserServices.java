@@ -1,4 +1,4 @@
-package com.fabyosk.services.user;
+package com.fabyosk.fsknotes.services.user;
 
 import java.util.List;
 

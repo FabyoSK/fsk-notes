@@ -1,4 +1,4 @@
-package com.fabyosk.model;
+package com.fabyosk.fsknotes.model;
 
 import java.util.HashMap;
 import java.util.Map;
