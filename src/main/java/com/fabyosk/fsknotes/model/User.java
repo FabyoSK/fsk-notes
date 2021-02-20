@@ -30,6 +30,8 @@ public class User {
         notes = new LinkedList<>();
     }
 
+    public User() {
+    }
 
     /**
      * Adds a new note in te map
