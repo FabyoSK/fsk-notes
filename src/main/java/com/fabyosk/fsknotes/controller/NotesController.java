@@ -26,14 +26,14 @@ public class NotesController {
     }
 
     @GetMapping("/addnote")
-    public String getUser(Model model) {
+    public String addNote(Model model) {
         Note note = new Note();
         model.addAttribute("note", note);
         return "user/add_note";
     }
 
     @PostMapping("/addnote")
-    public String submitForm(@ModelAttribute("note") Note note) {
+    public String submitNote(@ModelAttribute("note") Note note) {
         System.out.println(note.getContent());
         noteRepository.save(note);
         return "user/list_notes";

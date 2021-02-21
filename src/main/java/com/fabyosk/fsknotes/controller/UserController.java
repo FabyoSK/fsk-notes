@@ -28,10 +28,11 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String submitForm(@ModelAttribute("user") User user) {
+    public String submitForm(@ModelAttribute("user") User user, Model model) {
         System.out.println(user);
         userServices.setCurrentUser(user);
         userRepository.save(user);
+        model.addAttribute("users", userRepository.findAll());
         return "user/register_success";
     }
 

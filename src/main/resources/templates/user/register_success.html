@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <title>Registration Success</title>
     <style type="text/css">
-    span {
+      span {
         display: inline-block;
         width: 200px;
         text-align: left;
-    }
-
+      }
     </style>
-</head>
-<body>
-<div align="center">
-    <h2>Registration Succeeded!</h2>
-    <span>Full name:</span><span th:text="${user.name}"></span><br/>
-    <span>Full name:</span><span th:text="${user.notes}"></span><br/>
-</div>
-</body>
+  </head>
+  <body>
+    <div align="center">
+      <h2>Registration Succeeded!</h2>
+      <p th:text="'Welcome, ' + ${user.name}"></p>
+      <h3>All registed users</h3>
+      <div th:each="user : ${users}">
+        <p th:text="${user.name}"></p>
+      </div>
+    </div>
+  </body>
 </html>
