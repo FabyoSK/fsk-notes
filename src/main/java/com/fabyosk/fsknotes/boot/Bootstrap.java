@@ -40,6 +40,6 @@ public class Bootstrap implements CommandLineRunner {
         userRepository.save(user1);
 
 
-        System.out.println("num "+ noteRepository.count());
+        System.out.println("num " + noteRepository.count());
     }
 }

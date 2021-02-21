@@ -1,10 +1,13 @@
 package com.fabyosk.fsknotes.controller;
 
+import com.fabyosk.fsknotes.model.Note;
 import com.fabyosk.fsknotes.repositories.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class NotesController {
@@ -16,9 +19,23 @@ public class NotesController {
         this.noteRepository = noteRepository;
     }
 
-    @RequestMapping("/notes")
+    @GetMapping("/listnotes")
     public String getNotes(Model model) {
         model.addAttribute("notes", noteRepository.findAll());
-        return "notes";
+        return "user/list_notes";
+    }
+
+    @GetMapping("/addnote")
+    public String getUser(Model model) {
+        Note note = new Note();
+        model.addAttribute("note", note);
+        return "user/add_note";
+    }
+
+    @PostMapping("/addnote")
+    public String submitForm(@ModelAttribute("note") Note note) {
+        System.out.println(note.getContent());
+        noteRepository.save(note);
+        return "user/list_notes";
     }
 }

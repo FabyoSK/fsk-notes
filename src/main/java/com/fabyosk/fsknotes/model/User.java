@@ -1,10 +1,8 @@
 package com.fabyosk.fsknotes.model;
 
 import javax.persistence.*;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * The User entity
@@ -16,8 +14,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    private String password;
 
-    @OneToMany( targetEntity=Note.class )
+
+    @OneToMany(targetEntity = Note.class)
     private List<Note> notes;
 
     /**
@@ -91,6 +91,14 @@ public class User {
 
     public void setNotes(List<Note> notes) {
         this.notes = notes;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
