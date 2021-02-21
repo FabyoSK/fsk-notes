@@ -31,12 +31,14 @@ public class Bootstrap implements CommandLineRunner {
         user1.addNote(n3);
         user1.addNote(n4);
 
+
         noteRepository.save(n1);
         noteRepository.save(n2);
         noteRepository.save(n3);
         noteRepository.save(n4);
 
         userRepository.save(user1);
+
 
         System.out.println("num "+ noteRepository.count());
     }
