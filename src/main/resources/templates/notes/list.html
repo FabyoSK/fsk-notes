@@ -10,6 +10,9 @@
     <h1>hi</h1>
 
     <table>
+      <tr>
+        <th>Note</th>
+      </tr>
       <tr th:each="note : ${notes}">
         <td th:text="${note.content}"></td>
       </tr>

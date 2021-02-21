@@ -8,7 +8,7 @@
         <version>2.4.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.fabyosk</groupId>
+    <groupId>com.fabyosk.fsknotes</groupId>
     <artifactId>fsknotes</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>fsknotes</name>

@@ -1,20 +1,20 @@
 package com.fabyosk.fsknotes.controller;
 
-import com.fabyosk.fsknotes.repositories.UserRepositorie;
-import org.springframework.stereotype.Controller;
+import com.fabyosk.fsknotes.repositories.UserRepository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class UserController {
-    private UserRepositorie userRepositorie;
+    private UserRepository userRepository;
 
-    public UserController(UserRepositorie userRepositorie) {
-        this.userRepositorie = userRepositorie;
+    public UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
     @RequestMapping("/user")
     public String getUser(Model model){
-        model.addAttribute("user", userRepositorie.findAll());
-        return "user";
+        model.addAttribute("user", userRepository.findAll());
+        return "user/list";
     }
 }

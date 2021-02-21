@@ -1,20 +1,20 @@
-package com.fabyosk.fsknotes;
+package com.fabyosk.fsknotes.boot;
 
 import com.fabyosk.fsknotes.model.Note;
 import com.fabyosk.fsknotes.model.User;
-import com.fabyosk.fsknotes.repositories.NoteRepositorie;
-import com.fabyosk.fsknotes.repositories.UserRepositorie;
+import com.fabyosk.fsknotes.repositories.NoteRepository;
+import com.fabyosk.fsknotes.repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Bootstrap implements CommandLineRunner {
-    private final UserRepositorie userRepositorie;
-    private final NoteRepositorie noteRepositorie;
+    private final UserRepository userRepository;
+    private final NoteRepository noteRepository;
 
-    public Bootstrap(UserRepositorie userRepositorie, NoteRepositorie noteRepositorie) {
-        this.userRepositorie = userRepositorie;
-        this.noteRepositorie = noteRepositorie;
+    public Bootstrap(UserRepository userRepository, NoteRepository noteRepository) {
+        this.userRepository = userRepository;
+        this.noteRepository = noteRepository;
     }
 
     @Override
@@ -31,11 +31,13 @@ public class Bootstrap implements CommandLineRunner {
         user1.addNote(n3);
         user1.addNote(n4);
 
-        noteRepositorie.save(n1);
-        noteRepositorie.save(n2);
-        noteRepositorie.save(n3);
-        noteRepositorie.save(n4);
+        noteRepository.save(n1);
+        noteRepository.save(n2);
+        noteRepository.save(n3);
+        noteRepository.save(n4);
 
-        userRepositorie.save(user1);
+        userRepository.save(user1);
+
+        System.out.println("num "+ noteRepository.count());
     }
 }

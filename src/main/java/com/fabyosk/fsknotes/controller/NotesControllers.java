@@ -1,23 +1,22 @@
 package com.fabyosk.fsknotes.controller;
 
-import com.fabyosk.fsknotes.repositories.NoteRepositorie;
-import org.springframework.stereotype.Controller;
+import com.fabyosk.fsknotes.repositories.NoteRepository;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class NotesControllers {
 
-    private final NoteRepositorie noteRepositorie;
+    private final NoteRepository noteRepository;
 
-    public NotesControllers(NoteRepositorie noteRepositorie) {
-        this.noteRepositorie = noteRepositorie;
+    public NotesControllers(NoteRepository noteRepository) {
+        this.noteRepository = noteRepository;
     }
 
     @RequestMapping("/notes")
     public String getNotes(Model model){
-        model.addAttribute("notes", noteRepositorie.findAll());
+        model.addAttribute("notes", noteRepository.findAll());
         return "notes/list";
    }
 }
