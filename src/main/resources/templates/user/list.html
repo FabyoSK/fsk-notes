@@ -13,7 +13,7 @@
       <tr>
         <th>Name</th>
       </tr>
-      <tr th:each="note : ${user}">
+      <tr th:each="user : ${user}">
         <td th:text="${user.name}"></td>
       </tr>
     </table>
