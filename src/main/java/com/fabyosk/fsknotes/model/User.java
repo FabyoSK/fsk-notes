@@ -61,6 +61,14 @@ public class User {
         return id;
     }
 
+    /**
+     * Set th user id
+     *
+     * @param id
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     /**
      * Get the name of the user
@@ -69,16 +77,6 @@ public class User {
      */
     public String getName() {
         return name;
-    }
-
-
-    /**
-     * Set th user id
-     *
-     * @param id
-     */
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public void setName(String name) {

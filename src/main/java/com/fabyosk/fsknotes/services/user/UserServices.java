@@ -1,7 +1,6 @@
 package com.fabyosk.fsknotes.services.user;
 
 import com.fabyosk.fsknotes.database.ConnectionManager;
-import com.fabyosk.fsknotes.model.Note;
 import com.fabyosk.fsknotes.model.User;
 
 import java.sql.Connection;
@@ -10,21 +9,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-public class UserServices implements UserServiceInteface {
+public class UserServices {
     private User currentUser;
     private Connection dbConnection;
 
-    @Override
-    public void add(Note note) {
-        currentUser.addNote(note);
-    }
-
-    @Override
-    public void delete() {
-
-    }
-
-    @Override
     public List list() {
         return null;
     }
@@ -54,6 +42,14 @@ public class UserServices implements UserServiceInteface {
 
     }
 
+    public boolean authenticate(String username, String password) {
+        return false;
+    }
+
+    public void add(User user) {
+
+    }
+
     public User findByName(String username) {
         ConnectionManager connectionManager = new ConnectionManager();
         dbConnection = connectionManager.getConnection();
@@ -80,6 +76,14 @@ public class UserServices implements UserServiceInteface {
         }
 
         return null;
+    }
+
+    public List<User> findAll() {
+        return null;
+    }
+
+    public int count() {
+        return 0;
     }
 
     public User findById(int userId) {

@@ -27,11 +27,11 @@ public class AppTest {
         System.out.println(newUser.getName() + " added on db");
 
         NotesServices notesServices = new NotesServices();
-        notesServices.add(new Note("Ser ou nao ser, eis a questao"),2);
+        notesServices.add(new Note("Ser ou nao ser, eis a questao"), 2);
 
         List<Note> notes = notesServices.getNotesById(2);
 
-        for (Note n:notes) {
+        for (Note n : notes) {
             System.out.println(n.getContent());
         }
     }

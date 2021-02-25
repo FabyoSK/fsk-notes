@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Document</title>
 </head>
 <body>
 <div align="center">
     <h1>Add note</h1>
-    <form action="#" th:action="@{/addnote}" method="post" th:object="${note}">
-        <textarea rows="5" cols="25" th:field="*{content}"></textarea>
+    <form action="#" method="post" th:action="@{/addnote}" th:object="${note}">
+        <textarea cols="25" rows="5" th:field="*{content}"></textarea>
         <br/>
 
         <button type="submit">Add note</button>

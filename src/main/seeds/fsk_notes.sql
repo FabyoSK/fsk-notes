@@ -4,10 +4,14 @@ USE fsk_notes;
 
 CREATE TABLE users (
   user_id INTEGER NOT NULL AUTO_INCREMENT,
-  user_name CHAR(15) NOT NULL, 
+  user_name CHAR(64) NOT NULL,
+  password CHAR(64) NOT NULL,
+  firstname CHAR(64) NOT NULL,
+  lastname CHAR(64) NOT NULL,
 
   PRIMARY KEY(user_id)
 );
+
 CREATE TABLE notes (
   note_id INTEGER NOT NULL AUTO_INCREMENT,
   content VARCHAR(200) NOT NULL,
@@ -16,6 +20,3 @@ CREATE TABLE notes (
   PRIMARY KEY(note_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
-
-insert into users(user_name) values ("fsk");
-insert into users(user_name) values ("nox");

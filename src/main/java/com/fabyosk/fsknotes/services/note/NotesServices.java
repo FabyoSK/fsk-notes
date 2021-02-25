@@ -52,7 +52,7 @@ public class NotesServices {
 
             while (resultSet.next()) {
                 String content = resultSet.getString("content");
-                    noteList.add(new Note(content));
+                noteList.add(new Note(content));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

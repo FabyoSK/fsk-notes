@@ -3,7 +3,6 @@ package com.fabyosk.fsknotes.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class ConnectionManager {
     private String dbUrl = "jdbc:mysql://localhost:3306/fsk_notes";
