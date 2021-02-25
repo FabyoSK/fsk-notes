@@ -19,7 +19,3 @@ CREATE TABLE notes (
 
 insert into users(user_name) values ("fsk");
 insert into users(user_name) values ("nox");
-
-insert into notes(content, user_id) values ("Loli is LOVEEEEEE", 1);
-insert into notes(content, user_id) values ("FSK On the DB", 1);
-insert into notes(content, user_id) values ("Nox, Fox, Rox, GigiNox, iNox", 2);
