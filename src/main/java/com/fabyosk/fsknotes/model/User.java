@@ -1,6 +1,9 @@
 package com.fabyosk.fsknotes.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,6 +11,7 @@ import java.util.List;
  * The User entity
  */
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
@@ -16,6 +20,8 @@ public class User {
     private String name;
     private String password;
 
+    @CreationTimestamp
+    private Date creationTime;
 
     @OneToMany(targetEntity = Note.class)
     private List<Note> notes;
@@ -97,6 +103,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Date getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(Date creationTime) {
+        this.creationTime = creationTime;
     }
 
     @Override
