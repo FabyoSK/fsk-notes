@@ -1,17 +1,21 @@
 package com.fabyosk.fsknotes.services.user;
 
-import com.fabyosk.fsknotes.database.ConnectionManager;
 import com.fabyosk.fsknotes.model.User;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.RollbackException;
 import java.util.List;
 
 public class UserServices {
     private User currentUser;
-    private Connection dbConnection;
+    private EntityManagerFactory emf;
+
+    public UserServices() {
+        emf = Persistence.createEntityManagerFactory("dev");
+    }
+
 
     public List list() {
         return null;
@@ -21,61 +25,49 @@ public class UserServices {
         this.currentUser = currentUser;
     }
 
-    public void addUser(User user) {
-        ConnectionManager connectionManager = new ConnectionManager();
-        dbConnection = connectionManager.getConnection();
-
-        Statement statement = null;
-        try {
-            statement = dbConnection.createStatement();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        String query = "insert into users(user_name) values ('" + user.getName() + "')";
+    public void add(User user) {
+        EntityManager em = emf.createEntityManager();
 
         try {
-            int resultSet = statement.executeUpdate(query);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
 
+            em.getTransaction().begin(); // open transaction
+            em.persist(user);
+            em.getTransaction().commit(); // close transaction
+
+        } catch (RollbackException ex) {
+
+            // something went wrong, make sure db is consistent
+            em.getTransaction().rollback();
+
+        } finally {
+            if (em != null) {
+                em.close();
+
+
+            }
+        }
     }
 
     public boolean authenticate(String username, String password) {
         return false;
     }
 
-    public void add(User user) {
+
+    public User findByName(String username) {
+        return null;
 
     }
 
-    public User findByName(String username) {
-        ConnectionManager connectionManager = new ConnectionManager();
-        dbConnection = connectionManager.getConnection();
+    public User findById(Integer id) {
+        EntityManager em = emf.createEntityManager();
 
-        Statement statement = null;
-        ResultSet resultSet = null;
         try {
-            statement = dbConnection.createStatement();
-            String query = "SELECT * FROM users \n" +
-                    "WHERE user_name ='" + username + "'";
-
-            resultSet = statement.executeQuery(query);
-
-
-            if (resultSet.next()) {
-                String usernameValue;
-                usernameValue = resultSet.getString("user_name");
-
-                connectionManager.close();
-                return new User(username);
+            return em.find(User.class, id);
+        } finally {
+            if (em != null) {
+                em.close();
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         }
-
-        return null;
     }
 
     public List<User> findAll() {
@@ -86,33 +78,5 @@ public class UserServices {
         return 0;
     }
 
-    public User findById(int userId) {
-        ConnectionManager connectionManager = new ConnectionManager();
-        dbConnection = connectionManager.getConnection();
 
-        Statement statement = null;
-        ResultSet resultSet = null;
-        try {
-            statement = dbConnection.createStatement();
-
-            String query = "SELECT * FROM users \n" +
-                    "WHERE user_id= '" + userId + "'";
-
-            resultSet = statement.executeQuery(query);
-
-
-            if (resultSet.next()) {
-                User newUser = new User(resultSet.getString("user_name"));
-                connectionManager.close();
-
-                return newUser;
-            }
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        connectionManager.close();
-        return null;
-    }
 }

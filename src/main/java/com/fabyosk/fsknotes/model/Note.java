@@ -7,6 +7,7 @@ import org.hibernate.annotations.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
 @Entity
@@ -21,6 +22,9 @@ public class Note {
 
     @CreationTimestamp
     private Date creationTime;
+
+    @ManyToOne
+    private User user;
 
     public Note() {
     }
@@ -59,5 +63,13 @@ public class Note {
 
     public void setCreationTime(Date creationTime) {
         this.creationTime = creationTime;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

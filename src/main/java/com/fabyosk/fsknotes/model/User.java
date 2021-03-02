@@ -23,7 +23,13 @@ public class User {
     @CreationTimestamp
     private Date creationTime;
 
-    @OneToMany(targetEntity = Note.class)
+    @OneToMany(
+            cascade = {CascadeType.ALL},
+            orphanRemoval = true,
+            // use Category foreign key on Product table to establish
+            // the many-to-one relationship instead of a join table
+            mappedBy = "user"
+    )
     private List<Note> notes;
 
     /**
@@ -46,6 +52,7 @@ public class User {
      */
     public void addNote(Note note) {
         notes.add(note);
+        note.setUser(this);
     }
 
     /**
@@ -112,6 +119,7 @@ public class User {
     public void setCreationTime(Date creationTime) {
         this.creationTime = creationTime;
     }
+
 
     @Override
     public String toString() {

@@ -1,11 +1,7 @@
 package com.fabyosk.fsknotes;
 
-import com.fabyosk.fsknotes.model.Note;
 import com.fabyosk.fsknotes.model.User;
-import com.fabyosk.fsknotes.services.note.NotesServices;
 import com.fabyosk.fsknotes.services.user.UserServices;
-
-import java.util.List;
 
 public class AppTest {
     public static void main(String[] args) {
@@ -22,17 +18,10 @@ public class AppTest {
 
 
         User newUser = new User("SKA");
-        userServices.addUser(newUser);
+        userServices.add(newUser);
 
         System.out.println(newUser.getName() + " added on db");
 
-        NotesServices notesServices = new NotesServices();
-        notesServices.add(new Note("Ser ou nao ser, eis a questao"), 2);
 
-        List<Note> notes = notesServices.getNotesById(2);
-
-        for (Note n : notes) {
-            System.out.println(n.getContent());
-        }
     }
 }

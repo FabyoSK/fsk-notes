@@ -31,7 +31,7 @@ public class UserController {
     public String submitForm(@ModelAttribute("user") User user, Model model) {
         System.out.println(user);
         userServices.setCurrentUser(user);
-        userServices.addUser(user);
+        userServices.add(user);
         userRepository.save(user);
         model.addAttribute("users", userServices.findAll());
         return "user/register_success";
