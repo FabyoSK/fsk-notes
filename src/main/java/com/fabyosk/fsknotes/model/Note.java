@@ -9,7 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.util.Date;
+import java.util.Objects;
 
+/**
+ * The Note entity
+ */
 @Entity
 public class Note {
     @Id
@@ -19,7 +23,9 @@ public class Note {
     private String title;
     private String content;
 
-
+    /**
+     * Stores the creation time of the Note
+     */
     @CreationTimestamp
     private Date creationTime;
 
@@ -29,17 +35,17 @@ public class Note {
     public Note() {
     }
 
-    public Note(String content) {
+    public Note(String title, String content) {
+        this.title = title;
         this.content = content;
     }
 
-    public String getContent() {
-        return content;
-    }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+
+    /**
+     * GETTERS AND SETTERS AREA
+     */
+
 
     public Integer getId() {
         return id;
@@ -57,6 +63,14 @@ public class Note {
         this.title = title;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public Date getCreationTime() {
         return creationTime;
     }
@@ -71,5 +85,29 @@ public class Note {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Note{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", creationTime=" + creationTime +
+                ", user=" + user +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Note note = (Note) o;
+        return Objects.equals(id, note.id) && Objects.equals(user, note.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, user);
     }
 }

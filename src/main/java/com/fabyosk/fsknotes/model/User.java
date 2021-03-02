@@ -39,11 +39,6 @@ public class User {
     )
     private List<Note> notes;
 
-    /**
-     * Create a new instance of noteMap and set the name
-     *
-     * @param name
-     */
     public User(String name) {
         this.name = name;
     }
