@@ -4,8 +4,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The User entity
@@ -17,91 +17,83 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String username;
     private String name;
     private String password;
 
+    /**
+     * Stores the creation time of the User
+     */
     @CreationTimestamp
     private Date creationTime;
 
+    /**
+     * A User has Many notes
+     */
     @OneToMany(
             cascade = {CascadeType.ALL},
             orphanRemoval = true,
-            // use Category foreign key on Product table to establish
+            // use User foreign key on Notes table to establish
             // the many-to-one relationship instead of a join table
             mappedBy = "user"
     )
     private List<Note> notes;
 
     /**
-     * Create a new instante of noteMap and set the name
+     * Create a new instance of noteMap and set the name
      *
      * @param name
      */
     public User(String name) {
         this.name = name;
-        notes = new LinkedList<>();
     }
 
     public User() {
     }
 
     /**
-     * Adds a new note in te map
+     * Auxiliary method to help Hibernate
      *
-     * @param note
+     * @see Note
      */
     public void addNote(Note note) {
         notes.add(note);
         note.setUser(this);
     }
 
-    /**
-     * Remove the given note
-     *
-     * @param id
-     */
+
     public void removeNote(int id) {
         notes.remove(id);
     }
 
 
     /**
-     * Gets the user Id
-     *
-     * @return id
+     * GETTERS AND SETTERS AREA
      */
+
+
     public Long getId() {
         return id;
     }
 
-    /**
-     * Set th user id
-     *
-     * @param id
-     */
     public void setId(Long id) {
         this.id = id;
     }
 
-    /**
-     * Get the name of the user
-     *
-     * @return name
-     */
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Note> getNotes() {
-        return notes;
-    }
-
-    public void setNotes(List<Note> notes) {
-        this.notes = notes;
     }
 
     public String getPassword() {
@@ -120,6 +112,14 @@ public class User {
         this.creationTime = creationTime;
     }
 
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
+    }
+
 
     @Override
     public String toString() {
@@ -128,5 +128,18 @@ public class User {
                 ", name='" + name + '\'' +
                 ", notes=" + notes +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id.equals(user.id) && username.equals(user.username);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username);
     }
 }
