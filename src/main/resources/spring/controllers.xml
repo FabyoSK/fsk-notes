@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="loginController" class="com.fabyosk.fsknotes.controller.LoginController">
+        <property name="authService" ref="authService"/>
+    </bean>
+
+    <bean id="notesController" class="com.fabyosk.fsknotes.controller.NotesController">
+        <property name="noteService" ref="noteService"/>
+    </bean>
+
+    <bean id="userController" class="com.fabyosk.fsknotes.controller.UserController">
+        <property name="userService" ref="userService"/>
+    </bean>
+
+
+</beans>
