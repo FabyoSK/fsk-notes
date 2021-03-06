@@ -10,10 +10,8 @@ public class AppTest {
 
         UserServices userServices = new UserServices();
 
-        User userFoundedByName = userServices.findByName("fsk");
         User userFoundedById = userServices.findById(2);
 
-        System.out.println(userFoundedByName.getName() + "Founded by name");
         System.out.println(userFoundedById.getName() + "Founded by id");
 
 

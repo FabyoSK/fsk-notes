@@ -12,9 +12,9 @@ public class Bootstrap implements CommandLineRunner {
     public void run(String... args) throws Exception {
         User user1 = new User("fsk");
 
-        Note n1 = new Note("Ver","One Piece");
-        Note n2 = new Note("Ir ver minhas Lolis no porão"," digo NOSSAS Lolis");
-        Note n3 = new Note("AWESOME","Mindblowing??");
+        Note n1 = new Note("Ver", "One Piece");
+        Note n2 = new Note("Ir ver minhas Lolis no porão", " digo NOSSAS Lolis");
+        Note n3 = new Note("AWESOME", "Mindblowing??");
         Note n4 = new Note("KKKATXUPPINOXX", "NOX");
 
         user1.addNote(n1);

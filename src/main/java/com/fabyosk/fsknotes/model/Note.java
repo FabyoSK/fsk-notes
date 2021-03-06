@@ -15,7 +15,7 @@ import java.util.Objects;
  * The Note entity
  */
 @Entity
-public class Note {
+public class Note implements Model {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -39,7 +39,6 @@ public class Note {
         this.title = title;
         this.content = content;
     }
-
 
 
     /**
