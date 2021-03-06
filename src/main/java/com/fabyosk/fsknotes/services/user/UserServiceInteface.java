@@ -6,14 +6,6 @@ import java.util.List;
 
 public interface UserServiceInteface {
 
-    /**
-     * Authenticates the user using the given username and password
-     *
-     * @param username the user name
-     * @param password the user password
-     * @return true if authenticated
-     */
-    boolean authenticate(String username, String password);
 
     /**
      * Adds a new user
@@ -35,7 +27,7 @@ public interface UserServiceInteface {
      *
      * @return list of users if found, null otherwise
      */
-    List<User> findAll();
+    List<User> list();
 
     /**
      * Count the number of existing users

@@ -5,20 +5,22 @@ import com.fabyosk.fsknotes.persistence.dao.UserDao;
 
 import java.util.List;
 
-public class UserServices {
+public class UserServices implements UserServiceInteface {
     private UserDao userDao;
 
+    @Override
     public List<User> list() {
         return userDao.findAll();
     }
 
-
+    @Override
     public void add(User user) {
         userDao.saveOrUpdate(user);
     }
 
-    public boolean authenticate(String username, String password) {
-        return false;
+    @Override
+    public User findByName(String username) {
+        return null;
     }
 
 
@@ -26,7 +28,7 @@ public class UserServices {
         return userDao.findById(id);
     }
 
-
+    @Override
     public int count() {
         return 0;
     }
