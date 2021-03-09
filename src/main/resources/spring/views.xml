@@ -3,38 +3,4 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <util:constant id="stdin" static-field="java.lang.System.in"/>
-    <util:constant id="stdout" static-field="java.lang.System.out"/>
-    <bean id="promtView" class="org.academiadecodigo.bootcamp.Prompt">
-        <constructor-arg index="0" ref="stdin"/>
-        <constructor-arg index="1" ref="stdout"/>
-    </bean>
-
-    <bean id="loginView" class="org.academiadecodigo.javabank.view.LoginView">
-        <property name="loginController" ref="loginController"/>
-        <property name="prompt" ref="promtView"/>
-    </bean>
-    <bean id="mainView" class="org.academiadecodigo.javabank.view.MainView">
-        <property name="mainController" ref="mainController"/>
-        <property name="prompt" ref="promtView"/>
-
-    </bean>
-    <bean id="balanceView" class="org.academiadecodigo.javabank.view.BalanceView">
-        <property name="balanceController" ref="balanceController"/>
-    </bean>
-    <bean id="newAccountView" class="org.academiadecodigo.javabank.view.NewAccountView">
-        <property name="newAccountController" ref="newAccountController"/>
-    </bean>
-    <bean id="depositView" class="org.academiadecodigo.javabank.view.AccountTransactionView">
-        <property name="transactionController" ref="depositController"/>
-        <property name="prompt" ref="promtView"/>
-    </bean>
-    <bean id="withdrawView" class="org.academiadecodigo.javabank.view.AccountTransactionView">
-        <property name="transactionController" ref="withdrawalController"/>
-        <property name="prompt" ref="promtView"/>
-
-    </bean>
-    <bean id="recipientsView" class="org.academiadecodigo.javabank.view.RecipientsView">
-        <property name="recipientsController" ref="recipientsController"/>
-    </bean>
 </beans>

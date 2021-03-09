@@ -25,4 +25,8 @@ public class NoteService implements NoteServiceInterface{
     public void setNotesDao(NotesDao notesDao) {
         this.notesDao = notesDao;
     }
+
+    public void setNoteDao(NotesDao noteDao) {
+        this.notesDao =noteDao;
+    }
 }

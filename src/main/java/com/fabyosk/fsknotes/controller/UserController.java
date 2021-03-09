@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
-    private UserServices userServices;
+    private UserServices userService;
 
 
     @GetMapping("/register")
@@ -23,12 +23,14 @@ public class UserController {
     @PostMapping("/register")
     public String submitForm(@ModelAttribute("user") User user, Model model) {
         System.out.println(user);
-        userServices.add(user);
+        userService.add(user);
         return "user/register_success";
     }
 
 
-    public void setUserServices(UserServices userServices) {
-        this.userServices = userServices;
+    public void setUserService(UserServices userService) {
+        this.userService = userService;
     }
+
+
 }

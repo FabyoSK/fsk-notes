@@ -3,8 +3,10 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="userDao" class="com.fabyosk.fsknotes.persistence.dao.UserDao">
+
+
+    <bean id="userDao" class="com.fabyosk.fsknotes.persistence.dao.jpa.JpaUserDao">
     </bean>
-    <bean id="noteDao" class="com.fabyosk.fsknotes.persistence.dao.NotesDao">
+    <bean id="noteDao" class="com.fabyosk.fsknotes.persistence.dao.jpa.JpaNotesDao">
     </bean>
 </beans>
