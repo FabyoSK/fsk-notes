@@ -7,25 +7,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
     private UserServices userService;
 
 
-    @GetMapping("/register")
-    public String getUser(Model model) {
-        User user = new User();
-        model.addAttribute("user", user);
-        return "user/register_form";
-    }
 
-    @PostMapping("/register")
-    public String submitForm(@ModelAttribute("user") User user, Model model) {
-        System.out.println(user);
-        userService.add(user);
-        return "user/register_success";
-    }
 
 
     public void setUserService(UserServices userService) {

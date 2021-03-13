@@ -3,6 +3,7 @@ package com.fabyosk.fsknotes.model;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -38,7 +39,7 @@ public class User implements Model {
             mappedBy = "user",
             fetch = FetchType.EAGER
     )
-    private List<Note> notes;
+    private List<Note> notes = new ArrayList<>();
 
     public User(String name) {
         this.name = name;

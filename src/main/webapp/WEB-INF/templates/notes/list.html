@@ -9,6 +9,17 @@
 <body>
 <h1>hi</h1>
 
+<h1>Add note</h1>
+<p th:text="${user.id}"></p>
+
+<form method="post" th:action="@{'/notes/add/' + ${user.id}}" th:object="${note}">
+    <input
+            type="text"
+            placeholder="Adicionar novo todo"
+            th:field="*{content}"
+    />
+    <button type="submit">Add</button>
+</form>
 <table>
     <tr>
         <th>Note</th>

@@ -5,6 +5,7 @@ import com.fabyosk.fsknotes.model.Model;
 import com.fabyosk.fsknotes.persistence.TransactionException;
 import com.fabyosk.fsknotes.persistence.dao.Dao;
 import org.hibernate.HibernateException;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,7 +22,7 @@ import java.util.List;
 public abstract class GenericJpaDao<T extends Model> implements Dao<T> {
 
     protected Class<T> modelType;
-
+    @PersistenceContext
     protected EntityManager em;
 
     /**
@@ -54,6 +55,7 @@ public abstract class GenericJpaDao<T extends Model> implements Dao<T> {
      * @see Dao#findById(Integer)
      */
     @Override
+    @Transactional
     public T findById(Integer id) {
 
         try {
@@ -69,6 +71,7 @@ public abstract class GenericJpaDao<T extends Model> implements Dao<T> {
      * @see Dao#saveOrUpdate(Model)
      */
     @Override
+    @Transactional
     public T saveOrUpdate(T modelObject) {
 
         try {
@@ -84,6 +87,7 @@ public abstract class GenericJpaDao<T extends Model> implements Dao<T> {
      * @see Dao#delete(Integer)
      */
     @Override
+    @Transactional
     public void delete(Integer id) {
 
         try {

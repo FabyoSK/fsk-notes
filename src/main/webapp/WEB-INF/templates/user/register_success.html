@@ -16,10 +16,8 @@
 <div align="center">
     <h2>Registration Succeeded!</h2>
     <p th:text="'Welcome, ' + ${user.name}"></p>
-    <h3>All registed users</h3>
-    <div th:each="user : ${users}">
-        <p th:text="${user.name}"></p>
-    </div>
+    <p th:text="${user.id}"></p>
+    <p th:text="${user.username}"></p>
 </div>
 </body>
 </html>

@@ -2,9 +2,12 @@ package com.fabyosk.fsknotes.services.user;
 
 import com.fabyosk.fsknotes.model.User;
 import com.fabyosk.fsknotes.persistence.dao.UserDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserServices implements UserServiceInteface {
     private UserDao userDao;
 
@@ -20,7 +23,7 @@ public class UserServices implements UserServiceInteface {
 
     @Override
     public User findByName(String username) {
-        return null;
+        return userDao.findByName(username);
     }
 
 
@@ -33,6 +36,7 @@ public class UserServices implements UserServiceInteface {
         return 0;
     }
 
+    @Autowired
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }

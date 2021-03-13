@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Home | FSK Notes</title>
@@ -7,8 +7,8 @@
 <body>
 <h1>FSK Notes</h1>
 <p>A simple notes web App</p>
-<a href="/register">Click here to register</a>
-
+<a>Click here to register</a>
+<h1 th:text="${user.name}">USER</h1>
 <h1>App in development :), so... it has a lot of bugs</h1>
 </body>
 </html>
