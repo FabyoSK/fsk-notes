@@ -2,12 +2,8 @@ package com.fabyosk.fsknotes.model;
 
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
@@ -15,6 +11,7 @@ import java.util.Objects;
  * The Note entity
  */
 @Entity
+@Table(name = "notes")
 public class Note implements Model {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

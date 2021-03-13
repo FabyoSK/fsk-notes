@@ -35,7 +35,8 @@ public class User implements Model {
             orphanRemoval = true,
             // use User foreign key on Notes table to establish
             // the many-to-one relationship instead of a join table
-            mappedBy = "user"
+            mappedBy = "user",
+            fetch = FetchType.EAGER
     )
     private List<Note> notes;
 
