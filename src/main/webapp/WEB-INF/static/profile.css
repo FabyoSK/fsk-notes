@@ -1,0 +1,9 @@
+.profile {
+  background-color: #dddddd;
+  flex-direction: column;
+}
+.profile img {
+  padding: 2rem;
+  width: 20rem;
+  border-radius: 50%;
+}

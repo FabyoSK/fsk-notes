@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --background-color: #f05454;
+  --background-soft-color: #dddddd;
+  --text: #222831;
+  --dark-bg: #222831;
+  --dark-soft-bg: #30475e;
+}
+a {
+  text-decoration: none;
+}
+body {
+  background-color: var(--background-color);
+  font: 400 1.6rem Poppins;
+}
+h1,
+h2,
+h3 {
+  color: var(--text);
+  text-align: center;
+}
+h1 {
+  font-size: 2.4rem;
+}
+h2 {
+  font-size: 2rem;
+}
+p {
+  font-size: 1rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+button,
+.checkmark {
+  cursor: pointer;
+}

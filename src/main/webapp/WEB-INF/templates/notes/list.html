@@ -1,30 +1,61 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Document</title>
-</head>
-<body>
-<h1>hi</h1>
+    <link rel="stylesheet" href="../../static/global.css" />
+    <link rel="stylesheet" href="../../static/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div>
+          <h1>FSK | Notes</h1>
+        </div>
+        <div class="profile-icon">
+          <a href="/">Profile </a
+          ><img
+            src="https://avatars.githubusercontent.com/u/64048314?s=460&u=5dddd476bfb958ad920aeeeca58b7a32e87e3a39&v=4"
+            alt=""
+          />
+        </div>
+      </nav>
+    </header>
 
-<h1>Add note</h1>
-<p th:text="${user.id}"></p>
+    <p th:text="${user.id}"></p>
 
-<form method="post" th:action="@{'/notes/add/' + ${user.id}}" th:object="${note}">
-    <input
-            type="text"
-            placeholder="Adicionar novo todo"
-            th:field="*{content}"
-    />
-    <button type="submit">Add</button>
-</form>
-
-<h1>Note</h1>
-<div th:each="note : ${notes}">
-    <p th:text="${note.content}"> </a></p><a th:href="@{'/notes/delete/' + ${note.id}}" th:text="X">
-</div>
-</table>
-</body>
+    <form
+      method="post"
+      th:action="@{'/notes/add/' + ${user.id}}"
+      th:object="${note}"
+      class="container"
+    >
+      <div class="input-group">
+        <input type="text" placeholder="Add a note..." th:field="*{content}" />
+        <button type="submit">Add</button>
+      </div>
+    </form>
+    <div class="container">
+      <main>
+        <ul th:each="note : ${notes}">
+          <li th:text="${note.content}">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad,
+              consectetur. Officia recusandae reprehenderit explicabo quo
+              repudiandae reiciendis ipsa? Unde, reiciendis accusamus dolorum
+              aut rerum optio voluptatibus illum rem illo asperiores.
+            </p>
+            <a
+              th:href="@{'/notes/' + ${user.id} +'/delete/' + ${note.id}}"
+              th:text="X"
+            >
+              X</a
+            >
+          </li>
+        </ul>
+      </main>
+    </div>
+  </body>
 </html>

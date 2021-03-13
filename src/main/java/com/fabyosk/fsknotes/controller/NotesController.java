@@ -41,10 +41,10 @@ public class NotesController {
         return "redirect:/notes/list";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteNote(@PathVariable Integer id) {
+    @GetMapping("{userid}/delete/{id}")
+    public String deleteNote(@PathVariable Integer userid,@PathVariable Integer id) {
 
-        User user = userServices.findById(1);
+        User user = userServices.findById(userid);
         user.removeNote(noteService.getById(id));
         userServices.add(user);
         return "redirect:/notes/list";
