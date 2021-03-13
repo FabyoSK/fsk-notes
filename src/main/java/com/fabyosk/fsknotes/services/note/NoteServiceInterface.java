@@ -12,7 +12,7 @@ public interface NoteServiceInterface {
      * @param note the new note to add
      */
     void add(Note note);
-
+    Note getById(int id);
     /**
      * Finds a user by name
      *
@@ -33,5 +33,4 @@ public interface NoteServiceInterface {
      * @return the number of notes
      */
     int count();
-
 }

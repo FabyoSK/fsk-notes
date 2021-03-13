@@ -2,6 +2,7 @@ package com.fabyosk.fsknotes.controller;
 
 import com.fabyosk.fsknotes.model.Note;
 import com.fabyosk.fsknotes.model.User;
+import com.fabyosk.fsknotes.services.note.NoteService;
 import com.fabyosk.fsknotes.services.user.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/notes")
 public class NotesController {
     private UserServices userServices;
+    private NoteService noteService;
 
     @GetMapping("/list")
     public String getNotes(Model model) {
@@ -30,7 +32,7 @@ public class NotesController {
 
 
     @PostMapping("/add/{id}")
-    public String submitNote(@ModelAttribute("note") Note note, @PathVariable Integer id ) {
+    public String submitNote(@ModelAttribute("note") Note note, @PathVariable Integer id) {
         User user = userServices.findById(id);
         user.addNote(note);
 
@@ -38,8 +40,24 @@ public class NotesController {
 
         return "redirect:/notes/list";
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteNote(@PathVariable Integer id) {
+
+        User user = userServices.findById(1);
+        user.removeNote(noteService.getById(id));
+        userServices.add(user);
+        return "redirect:/notes/list";
+    }
+
+
     @Autowired
     public void setUserServices(UserServices userServices) {
         this.userServices = userServices;
+    }
+
+    @Autowired
+    public void setNoteService(NoteService noteService) {
+        this.noteService = noteService;
     }
 }

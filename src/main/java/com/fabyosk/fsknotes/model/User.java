@@ -59,8 +59,9 @@ public class User implements Model {
     }
 
 
-    public void removeNote(int id) {
-        notes.remove(id);
+    public void removeNote(Note note) {
+        notes.remove(note);
+        note.setUser(null);
     }
 
 

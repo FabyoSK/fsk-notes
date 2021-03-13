@@ -20,13 +20,11 @@
     />
     <button type="submit">Add</button>
 </form>
-<table>
-    <tr>
-        <th>Note</th>
-    </tr>
-    <tr th:each="note : ${notes}">
-        <td th:text="${note.content}"></td>
-    </tr>
+
+<h1>Note</h1>
+<div th:each="note : ${notes}">
+    <p th:text="${note.content}"> </a></p><a th:href="@{'/notes/delete/' + ${note.id}}" th:text="X">
+</div>
 </table>
 </body>
 </html>
