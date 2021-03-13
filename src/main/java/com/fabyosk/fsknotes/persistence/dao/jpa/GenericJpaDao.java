@@ -22,7 +22,6 @@ public abstract class GenericJpaDao<T extends Model> implements Dao<T> {
 
     protected Class<T> modelType;
 
-    @PersistenceContext
     protected EntityManager em;
 
     /**
@@ -94,5 +93,10 @@ public abstract class GenericJpaDao<T extends Model> implements Dao<T> {
         } catch (HibernateException ex) {
             throw new TransactionException(ex);
         }
+    }
+
+    @PersistenceContext
+    public void setEm(EntityManager em) {
+        this.em = em;
     }
 }

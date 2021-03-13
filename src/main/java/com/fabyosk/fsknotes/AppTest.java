@@ -1,25 +1,23 @@
 package com.fabyosk.fsknotes;
 
+import com.fabyosk.fsknotes.model.Note;
 import com.fabyosk.fsknotes.model.User;
 import com.fabyosk.fsknotes.services.user.UserServices;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class AppTest {
     public static void main(String[] args) {
-        System.out.println("hello world");
+        ApplicationContext context = new ClassPathXmlApplicationContext("/spring/spring-config.xml");
+        User user = new User();
+        user.setName("fsk");
+        user.setUsername("fsk");
+        user.setPassword("fsk");
+
+        UserServices userServices = context.getBean(UserServices.class);
 
 
-        UserServices userServices = new UserServices();
-
-        User userFoundedById = userServices.findById(2);
-
-        System.out.println(userFoundedById.getName() + "Founded by id");
-
-
-        User newUser = new User("SKA");
-        userServices.add(newUser);
-
-        System.out.println(newUser.getName() + " added on db");
-
+        userServices.add(user);
 
     }
 }
