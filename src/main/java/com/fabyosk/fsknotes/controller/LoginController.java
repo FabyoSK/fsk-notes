@@ -34,8 +34,6 @@ public class LoginController {
 
     @PostMapping("/register")
     public String submitForm(@ModelAttribute("user") User user, Model model) {
-        String password = user.getPassword();
-        user.setPassword(Security.getHash(password));
         userServices.add(user);
         return "redirect:/" + user.getUsername() + "/profile";
     }
