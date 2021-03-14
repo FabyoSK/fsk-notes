@@ -10,16 +10,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/notes")
+@RequestMapping("/{username}/notes")
 public class NotesController {
     private UserServices userServices;
     private NoteService noteService;
 
     @GetMapping("/list")
-    public String getNotes(Model model) {
+    public String getNotes(Model model, @PathVariable String username) {
 
-        User user = userServices.findById(1);
-
+        User user = userServices.findByName(username);
 
         model.addAttribute("user", user);
 
@@ -31,14 +30,14 @@ public class NotesController {
     }
 
 
-    @PostMapping("/add/{id}")
-    public String submitNote(@ModelAttribute("note") Note note, @PathVariable Integer id) {
-        User user = userServices.findById(id);
+    @PostMapping("/add")
+    public String submitNote(@ModelAttribute("note") Note note, @PathVariable String username) {
+        User user = userServices.findByName(username);
         user.addNote(note);
 
         userServices.add(user);
 
-        return "redirect:/notes/list";
+        return "redirect:/{username}/notes/list";
     }
 
     @GetMapping("{userid}/delete/{id}")
@@ -47,7 +46,7 @@ public class NotesController {
         User user = userServices.findById(userid);
         user.removeNote(noteService.getById(id));
         userServices.add(user);
-        return "redirect:/notes/list";
+        return "redirect:/{username}/notes/list";
     }
 
 

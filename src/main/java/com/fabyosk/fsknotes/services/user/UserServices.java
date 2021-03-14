@@ -2,6 +2,7 @@ package com.fabyosk.fsknotes.services.user;
 
 import com.fabyosk.fsknotes.model.User;
 import com.fabyosk.fsknotes.persistence.dao.UserDao;
+import com.fabyosk.fsknotes.utils.Security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

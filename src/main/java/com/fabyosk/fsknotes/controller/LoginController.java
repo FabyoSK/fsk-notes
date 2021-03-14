@@ -3,6 +3,7 @@ package com.fabyosk.fsknotes.controller;
 import com.fabyosk.fsknotes.model.User;
 import com.fabyosk.fsknotes.services.auth.AuthService;
 import com.fabyosk.fsknotes.services.user.UserServices;
+import com.fabyosk.fsknotes.utils.Security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +34,32 @@ public class LoginController {
 
     @PostMapping("/register")
     public String submitForm(@ModelAttribute("user") User user, Model model) {
+        String password = user.getPassword();
+        user.setPassword(Security.getHash(password));
         userServices.add(user);
-        return "user/register_success";
+        return "redirect:/" + user.getUsername() + "/profile";
+    }
+
+    @GetMapping("/login")
+    public String showLogin(Model model) {
+        User user = new User();
+
+        model.addAttribute("user", user);
+        return "user/auth/login";
+    }
+
+    @PostMapping("/login")
+    public String auth(@ModelAttribute("user") User user) {
+
+        User loggingUser = userServices.findByName(user.getUsername());
+
+        if (loggingUser == null) {
+            return "user/auth/login";
+        }
+        if (!loggingUser.getUsername().equals(user.getUsername()) && !loggingUser.getPassword().equals(user.getPassword())) {
+            return "user/auth/login";
+        }
+
+        return "redirect:/" + user.getUsername() + "/notes/list/";
     }
 }
